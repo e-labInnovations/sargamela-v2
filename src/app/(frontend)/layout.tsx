@@ -31,9 +31,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
   const seo = await getSEOData()
 
-  // Helper to fix old Payload media URLs (converts /api/media/file/ to /media/)
-  const fixMediaUrl = (url: string) => url.replace(/\/api\/media\/file\//g, '/media/')
-
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
@@ -41,7 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Favicon */}
         {seo.favicon ? (
           <link
-            href={fixMediaUrl(getMediaUrl((seo.favicon as MediaType).url))}
+            href={getMediaUrl((seo.favicon as MediaType).url)}
             rel="icon"
             type={(seo.favicon as MediaType).mimeType || 'image/x-icon'}
           />
@@ -50,17 +47,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         )}
         {seo.faviconSvg && (
           <link
-            href={fixMediaUrl(getMediaUrl((seo.faviconSvg as MediaType).url))}
+            href={getMediaUrl((seo.faviconSvg as MediaType).url)}
             rel="icon"
             type="image/svg+xml"
           />
         )}
         {/* Apple Touch Icon */}
         {seo.appleTouchIcon && (
-          <link
-            rel="apple-touch-icon"
-            href={fixMediaUrl(getMediaUrl((seo.appleTouchIcon as MediaType).url))}
-          />
+          <link rel="apple-touch-icon" href={getMediaUrl((seo.appleTouchIcon as MediaType).url)} />
         )}
         {/* Theme Color */}
         {seo.themeColor && <meta name="theme-color" content={seo.themeColor} />}
