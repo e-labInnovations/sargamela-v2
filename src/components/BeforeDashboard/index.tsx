@@ -15,14 +15,14 @@ const BeforeDashboard: React.FC = () => {
       </Banner>
       Here&apos;s what to do next:
       <ul className={`${baseClass}__instructions`}>
-        <li>
+        {/* <li>
           <SeedButton />
           {' with a few pages, posts, and projects to jump-start your new site, then '}
           <a href="/" target="_blank">
             visit your website
           </a>
           {' to see the results.'}
-        </li>
+        </li> */}
         <li>
           <SeedEventButton />
           {' to seed the event data.'}

@@ -2144,6 +2144,4 @@ export interface Auth {
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
-}// Add type alias for Post to satisfy template blocks
-export type Post = Page
-export type BannerBlock = { content: any; style?: 'info' | 'error' | 'success' | 'warning' }
+}
