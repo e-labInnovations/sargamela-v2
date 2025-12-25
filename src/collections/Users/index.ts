@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
+import { preventProtectedUserDeletion } from './hooks'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -22,5 +23,8 @@ export const Users: CollectionConfig = {
       type: 'text',
     },
   ],
+  hooks: {
+    beforeDelete: [preventProtectedUserDeletion],
+  },
   timestamps: true,
 }
